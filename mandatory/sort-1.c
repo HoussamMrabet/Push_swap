@@ -6,13 +6,13 @@
 /*   By: hmrabet <hmrabet@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:59:37 by hmrabet           #+#    #+#             */
-/*   Updated: 2024/01/07 18:10:15 by hmrabet          ###   ########.fr       */
+/*   Updated: 2024/01/09 06:25:54 by hmrabet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_100(t_stack **a, t_stack **b)
+void	insertion(t_stack **a, t_stack **b)
 {
 	int		max;
 	t_stack	*tmp;
@@ -70,12 +70,12 @@ void	push_chunk(t_stack **a, t_stack **b, int min, int max)
 	}
 }
 
-void	ft_sort100(t_stack **a, t_stack **b)
+void	chuncker(t_stack **a, t_stack **b)
 {
 	push_chunk(a, b, 0, 19);
 	push_chunk(a, b, 20, 39);
 	push_chunk(a, b, 40, 59);
 	push_chunk(a, b, 60, 79);
 	push_chunk(a, b, 80, 99);
-	sort_100(a, b);
+	insertion(a, b);
 }

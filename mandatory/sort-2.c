@@ -5,53 +5,85 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmrabet <hmrabet@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 16:33:38 by hmrabet           #+#    #+#             */
-/*   Updated: 2024/01/08 21:30:03 by hmrabet          ###   ########.fr       */
+/*   Created: 2024/01/09 05:30:01 by hmrabet           #+#    #+#             */
+/*   Updated: 2024/01/09 06:52:04 by hmrabet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-void printList(t_stack *head)
+int	position(t_stack *a, t_stack *b)
 {
-    while (head != NULL) {
-        ft_printf("Value: %d, LIS: %d\n", head->value, head->lis);
-        head = head->next;
-    }
+	int	pos;
+	int	size;
+
+	size = ft_stacksize(b) / 2;
+	pos = a->index - 1;
+	while (size--)
+	{
+		if (pos == b->index)
+			return (1);
+		b = b->next;
+	}
+	return (0);
 }
 
-void	ft_lis(t_stack **a)
+void	back_to_a(t_stack **a, t_stack **b)
 {
-	t_stack *current = *a;
-    t_stack *lisEnd = NULL;  // Points to the end of the longest subsequence
-    t_stack *lisStart = NULL; // Points to the start of the longest subsequence
+	int	n;
+	int	last_a;
 
-    while (current != NULL) {
-        t_stack *temp = current;
-        int currentLIS = 1;  // Length of the current LIS
+	last_a = ft_stacklast(*a)->index;
+	n = 0;
+	while (ft_stacksize(*b))
+	{
+		if (!position(*a, *b))
+			bottom_partition(a, b, &n);
+		else
+			top_partition(a, b, &n);
+		while ((*a)->index - 1 == ft_stacklast(*a)->index)
+			rrab(a, 'a');
+		if (ft_stacklast(*a)->index == last_a)
+			n = 0;
+	}
+}
 
-        // Iterate through previous nodes to find the LIS
-        while (temp->previous != NULL && temp->value > temp->previous->value) {
-            currentLIS++;
-            temp = temp->previous;
-        }
+void	init(t_stack **a, int *pivot1, int *pivot2, int *last_pivot)
+{
+	*last_pivot = *pivot1;
+	*pivot2 = ft_stacksize(*a) / 6 + *pivot1;
+	*pivot1 += ft_stacksize(*a) / 3;
+}
 
-        // Update the LIS pointers if the current LIS is longer
-        if (lisEnd == NULL || currentLIS > lisEnd->lis) {
-            lisEnd = current;
-            lisStart = temp;
-        }
+void	migrate_to_b(t_stack **a, t_stack **b)
+{
+	int	pivot1;
+	int	pivot2;
+	int	last_pivot;
 
-        current = current->next;
-    }
+	last_pivot = -1;
+	pivot2 = ft_stacksize(*a) / 6;
+	pivot1 = ft_stacksize(*a) / 3;
+	while (ft_stacksize(*a) > 3)
+	{
+		if (ft_stacksize(*b) > 1 && (*b)->index < pivot2 \
+			&& (*b)->index > last_pivot && (*a)->index > pivot1)
+			rr(a, b);
+		else if (ft_stacksize(*b) > 1 && (*b)->index < pivot2 \
+			&& (*b)->index > last_pivot)
+			rab(b, 'b');
+		if ((*a)->index < pivot1)
+			pb(a, b);
+		else
+			rab(a, 'a');
+		if (ft_stacksize(*b) >= pivot1)
+			init(a, &pivot1, &pivot2, &last_pivot);
+	}
+}
 
-    // Print the longest increasing subsequence
-    ft_printf("Longest Increasing Subsequence: ");
-    while (lisStart != NULL && lisStart != lisEnd->next) {
-        ft_printf("%d ", lisStart->value);
-        lisStart = lisStart->next;
-    }
-    ft_printf("\n");
-	printList(*a);
+void	pivot(t_stack **a, t_stack **b)
+{
+	migrate_to_b(a, b);
+	sort_3(a);
+	back_to_a(a, b);
 }

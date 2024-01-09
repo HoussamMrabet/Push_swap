@@ -6,7 +6,7 @@
 /*   By: hmrabet <hmrabet@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 20:43:26 by hmrabet           #+#    #+#             */
-/*   Updated: 2024/01/08 20:40:22 by hmrabet          ###   ########.fr       */
+/*   Updated: 2024/01/09 06:27:55 by hmrabet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ void	sort_stack(t_stack **a, t_stack **b)
 		sort_3(a);
 	else if (size <= 5)
 		sort_5(a, b, size);
-	else if (size <= 100)
-		// ft_sort100(a, b);
-		ft_lis(a);
+	else if (size <= 60)
+		chuncker(a, b);
+	else if (size <= 600)
+		pivot(a, b);
 	else
 		ft_radix(a, b);
 }
