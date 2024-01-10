@@ -1,4 +1,4 @@
-# Push_swap Project
+# Push_Swap
 
 ## Introduction
 The **Push_swap** project is a sorting algorithm project that challenges developers to efficiently sort a set of integers using two stacks and a limited set of instructions. The objective is to create a program named `push_swap` that calculates and displays the smallest list of instructions to sort the given stack.
