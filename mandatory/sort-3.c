@@ -6,40 +6,40 @@
 /*   By: hmrabet <hmrabet@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 06:29:48 by hmrabet           #+#    #+#             */
-/*   Updated: 2024/01/09 06:47:26 by hmrabet          ###   ########.fr       */
+/*   Updated: 2024/01/09 23:39:18 by hmrabet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	bottom_partition(t_stack **stack_a, t_stack **stack_b, int *b)
+void	bottom_partition(t_stack **a, t_stack **b, int *n)
 {
-	while ((*stack_a)->index - 1 != (*stack_b)->index && ft_stacksize(*stack_b))
+	while ((*a)->index - 1 != (*b)->index && ft_stacksize(*b))
 	{
-		if (!(*b) || (*stack_b)->index > ft_stacklast(*stack_a)->index)
+		if (!(*n) || (*b)->index > ft_stacklast(*a)->index)
 		{
-			pa(stack_a, stack_b);
-			rab(stack_a, 'a');
-			*b = 1;
+			pa(a, b);
+			rab(a, 'a');
+			*n = 1;
 		}
 		else
-			rrab(stack_b, 'b');
+			rrab(b, 'b');
 	}
-	pa(stack_a, stack_b);
+	pa(a, b);
 }
 
-void	top_partition(t_stack **stack_a, t_stack **stack_b, int *b)
+void	top_partition(t_stack **a, t_stack **b, int *n)
 {
-	while ((*stack_a)->index - 1 != (*stack_b)->index)
+	while ((*a)->index - 1 != (*b)->index)
 	{
-		if (!(*b) || (*stack_b)->index > ft_stacklast(*stack_a)->index)
+		if (!(*n) || (*b)->index > ft_stacklast(*a)->index)
 		{
-			pa(stack_a, stack_b);
-			rab(stack_a, 'a');
-			*b = 1;
+			pa(a, b);
+			rab(a, 'a');
+			*n = 1;
 		}
 		else
-			rab(stack_b, 'b');
+			rab(b, 'b');
 	}
-	pa(stack_a, stack_b);
+	pa(a, b);
 }

@@ -6,7 +6,7 @@
 /*   By: hmrabet <hmrabet@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 20:43:26 by hmrabet           #+#    #+#             */
-/*   Updated: 2024/01/07 20:52:27 by hmrabet          ###   ########.fr       */
+/*   Updated: 2024/01/10 01:02:00 by hmrabet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,12 @@ void	get_answers(t_stack **a, t_stack **b)
 		{
 			free_stack(*a);
 			free_stack(*b);
+			free(str);
+			str = NULL;
 			write(2, "Error\n", 6);
 			exit(1);
 		}
+		free(str);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: hmrabet <hmrabet@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 05:30:01 by hmrabet           #+#    #+#             */
-/*   Updated: 2024/01/09 06:52:04 by hmrabet          ###   ########.fr       */
+/*   Updated: 2024/01/09 07:00:24 by hmrabet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ void	migrate_to_b(t_stack **a, t_stack **b)
 	pivot1 = ft_stacksize(*a) / 3;
 	while (ft_stacksize(*a) > 3)
 	{
-		if (ft_stacksize(*b) > 1 && (*b)->index < pivot2 \
+		if (ft_stacksize(*b) > 1 && (*b)->index < pivot2
 			&& (*b)->index > last_pivot && (*a)->index > pivot1)
 			rr(a, b);
-		else if (ft_stacksize(*b) > 1 && (*b)->index < pivot2 \
+		else if (ft_stacksize(*b) > 1 && (*b)->index < pivot2
 			&& (*b)->index > last_pivot)
 			rab(b, 'b');
 		if ((*a)->index < pivot1)

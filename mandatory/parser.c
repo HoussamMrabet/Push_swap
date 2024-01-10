@@ -6,7 +6,7 @@
 /*   By: hmrabet <hmrabet@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 01:16:10 by hmrabet           #+#    #+#             */
-/*   Updated: 2024/01/09 06:02:50 by hmrabet          ###   ########.fr       */
+/*   Updated: 2024/01/09 23:40:15 by hmrabet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,14 @@ int	check_argument(char **nbrs, t_stack **a)
 int	fill_stack(int argc, char **argv, t_stack **a)
 {
 	int		i;
-	int		j;
 	char	**nbrs;
 
 	i = 1;
-	j = 0;
 	while (i < argc)
 	{
 		nbrs = ft_split(argv[i], 32);
 		if (check_argument(nbrs, a))
 			return (free_buff(nbrs), 1);
-		j = 0;
 		i++;
 	}
 	index_nodes(a);
