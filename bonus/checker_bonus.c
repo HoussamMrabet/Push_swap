@@ -31,6 +31,7 @@ int	is_sorted(t_stack **a)
 		tmp1 = tmp1->next;
 	}
 	free_stack(*a);
+	*a = NULL;
 	return (1);
 }
 
@@ -109,4 +110,6 @@ int	main(int argc, char **argv)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
+	free_stack(a);
+	free_stack(b);
 }
