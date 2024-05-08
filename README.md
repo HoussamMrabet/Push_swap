@@ -36,6 +36,10 @@ I have included a checker program for testing the correctness of the sorting ins
 ARG="4 67 3 87 23"
 ./push_swap $ARG | ./checker $ARG
 ```
+Here is how to use the visualizer: *(instead of -50 ad 50 you can put the your own range)*
+```bash
+python3 python_visualizer.py `ruby -e "puts (-50..50).to_a.shuffle.join(' ')"`
+```
 
 ## Grading Criteria
 ### Mandatory
